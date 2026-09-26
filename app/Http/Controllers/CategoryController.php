@@ -8,17 +8,44 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return 'CategoryController@index';
+        $categories = [
+            [
+                'id' => 1,
+                'nama' => 'Pemrograman',
+                'deskripsi' => 'Buku tentang pemrograman dan pengembangan aplikasi.',
+            ],
+            [
+                'id' => 2,
+                'nama' => 'Database',
+                'deskripsi' => 'Buku tentang basis data dan pengelolaan data.',
+            ],
+            [
+                'id' => 3,
+                'nama' => 'Jaringan',
+                'deskripsi' => 'Buku tentang jaringan komputer dan komunikasi data.',
+            ],
+        ];
+
+        return view('categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return 'CategoryController@create';
+        return view('categories.create');
     }
 
     public function store(Request $request)
     {
-        return 'CategoryController@store';
+        $validated = $request->validate([
+            'nama' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        return redirect()->route('categories.index')
+            ->with(
+                'success',
+                "Kategori \"{$validated['nama']}\" berhasil ditambahkan (data dummy, belum tersimpan ke database)."
+            );
     }
 
     public function edit(string $id)

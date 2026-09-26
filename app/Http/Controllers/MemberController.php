@@ -54,7 +54,10 @@ class MemberController extends Controller
         $validated = $request->validated();
 
         return redirect()->route('members.index')
-            ->with('success', "Anggota \"{$validated['nama']}\" berhasil ditambahkan (data dummy, belum tersimpan ke database).");
+            ->with(
+                'success',
+                "Anggota \"{$validated['nama']}\" berhasil ditambahkan (data dummy, belum tersimpan ke database)."
+            );
     }
 
     public function show(string $id)
