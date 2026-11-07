@@ -6,25 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('loan_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('loan_id')->constrained('loans')->cascadeOnDelete();
-            $table->foreignId('book_id')->constrained('books');
-            $table->integer('jumlah')->default(1);
-            $table->date('tanggal_kembali')->nullable();
-            $table->decimal('denda', 10, 2)->default(0);
+            $table->foreignId('book_id')->constrained('books')->cascadeOnDelete();
+            $table->unsignedInteger('jumlah')->default(1);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('loan_items');

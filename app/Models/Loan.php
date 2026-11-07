@@ -14,9 +14,11 @@ class Loan extends Model
     protected $fillable = [
         'kode_peminjaman',
         'member_id',
+        'user_id',
         'tanggal_pinjam',
         'tanggal_jatuh_tempo',
         'tanggal_kembali',
+        'tanggal_dikembalikan',
         'status',
         'catatan',
     ];
@@ -24,6 +26,11 @@ class Loan extends Model
     public function member(): BelongsTo
     {
         return $this->belongsTo(Member::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function loanItems(): HasMany

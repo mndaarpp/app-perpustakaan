@@ -6,27 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_peminjaman', 20)->unique();
-            $table->foreignId('member_id')->constrained('members');
+            $table->string('kode_peminjaman', 50)->unique();
+            $table->foreignId('member_id')->constrained('members')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->date('tanggal_pinjam');
-            $table->date('tanggal_jatuh_tempo');
             $table->date('tanggal_kembali')->nullable();
-            $table->enum('status', ['dipinjam', 'dikembalikan', 'terlambat'])->default('dipinjam');
-            $table->text('catatan')->nullable();
+            $table->date('tanggal_jatuh_tempo');
+            $table->date('tanggal_dikembalikan')->nullable();
+            $table->string('status')->default('dipinjam');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('loans');
