@@ -5,6 +5,11 @@
 
     <h1>Tambah Peminjaman</h1>
 
+    {{-- Informasi Petugas Otomatis dari Session Login --}}
+    <p style="background: #f8fafc; padding: 10px; border-left: 4px solid #2563eb; margin-bottom: 16px;">
+        <em>Petugas pencatat: <strong>{{ auth()->user()->name }}</strong> (otomatis dari akun yang login).</em>
+    </p>
+
     @if ($errors->any())
     <div style="padding: 10px; background: #fee2e2; color: #991b1b; margin-bottom: 15px;">
         <ul>

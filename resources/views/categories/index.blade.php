@@ -6,12 +6,6 @@
 <div class="container" style="margin: 20px auto; max-width: 1000px;">
     <h1>Daftar Kategori</h1>
 
-    @if (session('success'))
-    <div style="background: #dcfce7; color: #166534; padding: 12px; border-radius: 4px; margin-bottom: 16px;">
-        {{ session('success') }}
-    </div>
-    @endif
-
     <p>
         <a href="{{ route('categories.create') }}" class="btn" style="display: inline-block; padding: 8px 16px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 4px;">
             + Tambah Kategori
